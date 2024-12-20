@@ -42,19 +42,23 @@ public class App {
         System.out.println();
 
         // Creo 5 giocatori
-        for(int i = 0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
             // Azzero il contatore
             int turno = 0;
+
             // Esce fuori dal while una volta finito tutti gli ostacoli
             while (lunghezzaPercorso != contatoreArray) {
+
                 // Mostro il turno
                 System.out.println("Turno n" + (turno + 1));
+
                 // Creo un azione casuale
                 int sceltaAzioni = scelta.nextInt(azioni.length);
                 String azionepresa = azioni[sceltaAzioni];
+
                 // Mostro l'azione
                 System.out.println("l'azione presa per " + percorsoGenerato.get(contatoreArray) + " è " + azionepresa);
-    
+
                 // Controllo se l'azione è giusta
                 if (percorsoGenerato.get(contatoreArray).equals("strada") && azionepresa.equals("corri")) {
                     System.out.println("Il giocatore corre lungo la strada e supera l'ostacolo");
@@ -71,11 +75,35 @@ public class App {
                 } else {
                     System.out.println("Azione sbagliata, prova di nuovo!");
                 }
+
                 // Aumento il conteggio del turno
                 turno++;
             }
-            contatoreArray= 0;
+            // Azzero il contatore e salvo il turno
+            contatoreArray = 0;
+            turniGiocatori[i] = turno;
         }
+
+        System.out.println();
+        for (int i = 0; i < turniGiocatori.length; i++) {
+            System.out.println("Il giocatore " + (i + 1) + " ha completato il percorso in " + turniGiocatori[i] + " turni");
+        }
+
+        // Variabili per tracciare il valore minimo e la posizione
+        int valoreMinimo = turniGiocatori[0];
+        int posizioneMinimo = 0;
+
+        // Ciclo per trovare il minimo
+        for (int i = 1; i < turniGiocatori.length; i++) {
+            if (turniGiocatori[i] < valoreMinimo) {
+                valoreMinimo = turniGiocatori[i];
+                posizioneMinimo = i;
+            }
+        }
+        System.out.println();
+        System.out.println();
+        // Espongo il vincitore
+        System.out.println("Il vincitore è il giocatore " + (posizioneMinimo+1) + " con " + valoreMinimo + " turni");
 
     }
 }
