@@ -35,6 +35,7 @@ public class App {
             String ostacoloPescato = ostacoli[indicePercorso];
             percorsoGenerato.add(ostacoloPescato);
         }
+
         // Mostro il percorso
         for (int i = 0; i < percorsoGenerato.size(); i++) {
             System.out.print(percorsoGenerato.get(i) + " ");
@@ -43,6 +44,7 @@ public class App {
 
         // Creo 5 giocatori
         for (int i = 0; i < 5; i++) {
+
             // Azzero il contatore
             int turno = 0;
 
@@ -83,10 +85,11 @@ public class App {
             contatoreArray = 0;
             turniGiocatori[i] = turno;
         }
-
+        // Espongo i vari risultati
         System.out.println();
         for (int i = 0; i < turniGiocatori.length; i++) {
-            System.out.println("Il giocatore " + (i + 1) + " ha completato il percorso in " + turniGiocatori[i] + " turni");
+            System.out.println(
+                    "Il giocatore " + (i + 1) + " ha completato il percorso in " + turniGiocatori[i] + " turni");
         }
 
         // Variabili per tracciare il valore minimo e la posizione
@@ -102,8 +105,9 @@ public class App {
         }
         System.out.println();
         System.out.println();
+        
         // Espongo il vincitore
-        System.out.println("Il vincitore è il giocatore " + (posizioneMinimo+1) + " con " + valoreMinimo + " turni");
+        System.out.println("Il vincitore è il giocatore " + (posizioneMinimo + 1) + " con " + valoreMinimo + " turni");
 
     }
 }
