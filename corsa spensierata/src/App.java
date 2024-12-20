@@ -11,6 +11,9 @@ public class App {
         System.out.println("Scegli quanti ostacoli vuoi");
         int lunghezzaPercorso = sc.nextInt();
 
+        // Turni dei giocatori
+        int[] turniGiocatori = new int[5];
+
         // Contatore array
         int contatoreArray = 0;
 
@@ -37,37 +40,42 @@ public class App {
             System.out.print(percorsoGenerato.get(i) + " ");
         }
         System.out.println();
-        int turno = 0;
 
-        // Esce fuori dal while una volta finito tutti gli ostacoli
-        while (lunghezzaPercorso != contatoreArray) {
-            // Mostro il turno
-            System.out.println("Turno n" + (turno + 1));
-            // Creo un azione casuale
-            int sceltaAzioni = scelta.nextInt(azioni.length);
-            String azionepresa = azioni[sceltaAzioni];
-            // Mostro l'azione
-            System.out.println("l'azione presa per " + percorsoGenerato.get(contatoreArray) + " è " + azionepresa);
-
-            // Controllo se l'azione è giusta
-            if (percorsoGenerato.get(contatoreArray).equals("strada") && azionepresa.equals("corri")) {
-                System.out.println("Il giocatore corre lungo la strada e supera l'ostacolo");
-                contatoreArray++;
-            } else if (percorsoGenerato.get(contatoreArray).equals("buca") && azionepresa.equals("salta")) {
-                System.out.println("Il giocatore salta il buco e supera l'ostacolo");
-                contatoreArray++;
-            } else if (percorsoGenerato.get(contatoreArray).equals("muro") && azionepresa.equals("arrampicati")) {
-                System.out.println("Il giocatore si arrampica sul muro e supera l'ostacolo");
-                contatoreArray++;
-            } else if (percorsoGenerato.get(contatoreArray).equals("piscina") && azionepresa.equals("nuota")) {
-                System.out.println("Il giocatore nuota nella piscina e supera l'ostacolo");
-                contatoreArray++;
-            } else {
-                System.out.println("Azione sbagliata, prova di nuovo!");
+        // Creo 5 giocatori
+        for(int i = 0; i<5; i++){
+            // Azzero il contatore
+            int turno = 0;
+            // Esce fuori dal while una volta finito tutti gli ostacoli
+            while (lunghezzaPercorso != contatoreArray) {
+                // Mostro il turno
+                System.out.println("Turno n" + (turno + 1));
+                // Creo un azione casuale
+                int sceltaAzioni = scelta.nextInt(azioni.length);
+                String azionepresa = azioni[sceltaAzioni];
+                // Mostro l'azione
+                System.out.println("l'azione presa per " + percorsoGenerato.get(contatoreArray) + " è " + azionepresa);
+    
+                // Controllo se l'azione è giusta
+                if (percorsoGenerato.get(contatoreArray).equals("strada") && azionepresa.equals("corri")) {
+                    System.out.println("Il giocatore corre lungo la strada e supera l'ostacolo");
+                    contatoreArray++;
+                } else if (percorsoGenerato.get(contatoreArray).equals("buca") && azionepresa.equals("salta")) {
+                    System.out.println("Il giocatore salta il buco e supera l'ostacolo");
+                    contatoreArray++;
+                } else if (percorsoGenerato.get(contatoreArray).equals("muro") && azionepresa.equals("arrampicati")) {
+                    System.out.println("Il giocatore si arrampica sul muro e supera l'ostacolo");
+                    contatoreArray++;
+                } else if (percorsoGenerato.get(contatoreArray).equals("piscina") && azionepresa.equals("nuota")) {
+                    System.out.println("Il giocatore nuota nella piscina e supera l'ostacolo");
+                    contatoreArray++;
+                } else {
+                    System.out.println("Azione sbagliata, prova di nuovo!");
+                }
+                // Aumento il conteggio del turno
+                turno++;
             }
-            // Aumento il conteggio del turno
-            turno++;
+            contatoreArray= 0;
         }
-        sc.close();
+
     }
 }
